@@ -397,5 +397,12 @@ final class KCDragonBallProfTests: XCTestCase {
         
         XCTAssertNotEqual(vc.title, "Detalles")
     }
-    
+
+    func testErrorViewController_DisplaysCorrectError() async {
+        let appState = AppState(loginUseCase: FakeLoginUseCase())
+        let vc = await ErrorViewController(appState: appState, error: "Custom Error")
+        await vc.loadViewIfNeeded()
+        
+        XCTAssertNotNil(vc.view)
+    }
 }
